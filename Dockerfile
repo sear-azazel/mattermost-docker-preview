@@ -3,7 +3,7 @@
 FROM mysql:5.7
 
 # Install ca-certificates to support TLS of Mattermost v3.5
-RUN apt-get update && apt-get install -y ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates curl netcat
 
 #
 # Configure SQL

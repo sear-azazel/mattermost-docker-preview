@@ -19,12 +19,10 @@ ENV MYSQL_DATABASE=mattermost_test
 #
 WORKDIR /mm
 
-# Added config to volume.
-VOLUME ./mattermost/config
-
 # Copy over files
 ADD https://releases.mattermost.com/3.5.3/mattermost-team-3.5.3-linux-amd64.tar.gz .
 RUN tar -zxvf ./mattermost-team-3.5.3-linux-amd64.tar.gz
+RUN chown root. ./mattermost
 ADD config_docker.json ./mattermost/config/config_docker.json
 ADD docker-entry.sh .
 

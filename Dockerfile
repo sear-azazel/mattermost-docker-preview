@@ -13,6 +13,7 @@ ENV MYSQL_ROOT_PASSWORD=mostest
 ENV MYSQL_USER=mmuser
 ENV MYSQL_PASSWORD=mostest
 ENV MYSQL_DATABASE=mattermost_test
+ENV MM_VERSION=3.5.3
 
 #
 # Configure Mattermost
@@ -20,14 +21,12 @@ ENV MYSQL_DATABASE=mattermost_test
 WORKDIR /mm
 
 # Copy over files
-ADD https://releases.mattermost.com/3.5.3/mattermost-team-3.5.3-linux-amd64.tar.gz .
-RUN tar -zxvf ./mattermost-team-3.5.3-linux-amd64.tar.gz
-RUN chown root. ./mattermost
-RUN mkdir ./mattermost/conf
-VOLUME ./mattermost/conf
+RUN curl https://releases.mattermost.com/$MM_VERSION/mattermost-team-$MM_VERSION-linux-amd64.tar.gz | tar -xvz
+RUN rm -rf ./mattermost/config
+RUN mkdir ./mattermost/config
 
-ADD config_docker.json ./mattermost/conf/config_docker.json
-ADD docker-entry.sh .
+COPY config_docker.json .
+COPY docker-entry.sh .
 
 RUN chmod +x ./docker-entry.sh
 ENTRYPOINT ./docker-entry.sh

@@ -23,7 +23,10 @@ WORKDIR /mm
 ADD https://releases.mattermost.com/3.5.3/mattermost-team-3.5.3-linux-amd64.tar.gz .
 RUN tar -zxvf ./mattermost-team-3.5.3-linux-amd64.tar.gz
 RUN chown root. ./mattermost
-ADD config_docker.json ./mattermost/config/config_docker.json
+RUN mkdir ./mattermost/conf
+VOLUME ./mattermost/conf
+
+ADD config_docker.json ./mattermost/conf/config_docker.json
 ADD docker-entry.sh .
 
 RUN chmod +x ./docker-entry.sh
@@ -32,10 +35,6 @@ ENTRYPOINT ./docker-entry.sh
 # Create default storage directory
 RUN mkdir ./mattermost-data
 VOLUME ./mattermost-data
-
-# Link confg
-RUN ln -s ./mattermost/config ./mattermost-config
-VOLUME ./mattermost-config
 
 # Ports
 EXPOSE 8065

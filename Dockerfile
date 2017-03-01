@@ -31,6 +31,7 @@ ENTRYPOINT ./docker-entry.sh
 # Create default storage directory
 RUN mkdir ./mattermost-data
 VOLUME ./mattermost-data
+VOLUME ./mattermost/config
 
 # Ports
 EXPOSE 8065

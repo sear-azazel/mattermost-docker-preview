@@ -9,8 +9,9 @@ until mysqladmin -hlocalhost -P3306 -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" processl
 	echo "MySQL still not ready, sleeping"
 	sleep 5
 done
-cp /mm/config_docker.json /mm/mattermost/config
-
+if [ ! -e /mm/mattermost/config/config_docker.json ]; then
+	cp /mm/config_docker.json /mm/mattermost/config
+fi
 
 echo "Starting platform"
 cd mattermost

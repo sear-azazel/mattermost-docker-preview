@@ -13,7 +13,7 @@ ENV MYSQL_ROOT_PASSWORD=mostest
 ENV MYSQL_USER=mmuser
 ENV MYSQL_PASSWORD=mostest
 ENV MYSQL_DATABASE=mattermost_test
-ENV MM_VERSION=3.5.3
+ENV MM_VERSION=3.6.2
 
 #
 # Configure Mattermost

@@ -36,4 +36,4 @@ RUN mkdir ./mattermost-data
 VOLUME ./mattermost-data
 
 # Ports
-EXPOSE 80
+EXPOSE 8065

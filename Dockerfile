@@ -31,9 +31,7 @@ COPY docker-entry.sh .
 RUN chmod +x ./docker-entry.sh
 ENTRYPOINT ./docker-entry.sh
 
-# Create default storage directory
-RUN mkdir ./mattermost/data
-VOLUME ./mattermost/data
+VOLUME /mm/mattermost/mattermost-data
 
 # Ports
 EXPOSE 8065
